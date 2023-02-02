@@ -1,0 +1,27 @@
+//*  Structure of Tables:  *//
+
+===========BEGIN================
+
+==------  Book -------==
+-title
+-desciription
+-isbn
+
+==------ Author ------==
+-first_name
+-last_name
+-email
+-bio
+
+==------ BookAuthor -----==
+-author
+-book
+
+==------ BookReview -----==
+-user
+-book
+-comment
+-stars_given
+
+=============END=================
+
