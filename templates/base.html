@@ -15,7 +15,7 @@
         body{
             width: 100%;
         }
-    .alert{
+    .alert-message{
         position: fixed;
         bottom: 15px;
         right: -300px;
@@ -103,7 +103,7 @@
    {% endblock content %}
     {% if messages %}
     {% for message in messages  %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5" role="alert">
+    <div class="alert alert-{{ message.tags }} alert-message alert-dismissible fade show mt-5" role="alert">
      <i class="fa-solid fa-shield-check"></i> {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
