@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Goodreads | Udate Profile {% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h2>Update Profile</h2>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-info mt-2">Update</button>
+</form>
+{% endblock content %}

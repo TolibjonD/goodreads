@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Panel | Users {% endblock title %}
+{% block additional_styles %}
+    <style>
+    body {
+        background-color: #1c1c1b;
+    }
+    </style>
+    {% endblock %}
+{% block content %}
+
+{% if pages %}
+
+<div class="row mb-2">
+    <div class="col-10 col-lg-6 mx-auto">
+        <form class="d-flex" role="search" method='get'>
+            <input class="form-control me-2" name='q' value="{{ search }}" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for user in pages.object_list %}
+    <div class="col">
+      <div class="card h-100 bg-transparent border-success">
+        <img src="{{ user.photo.url }}" class="card-img-top" alt="...">
+        <div class="card-body text-success border-success">
+          <h5 class="card-title"> {{ user.username }} </h5>
+          <p class="card-text"> {{ user.first_name }} </p>
+          <p class="card-text"> {{ user.last_name }} </p>
+          <p class="card-text"> {{ user.email }} </p>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination mt-2">
+        {% if pages.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1"><i class="fa-solid fa-backward-fast"></i> First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ pages.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li class="page-item"><a class="page-link active" style="cursor: not-allowed;"> {{ pages.number }} </a></li>
+     {% if pages.has_next %}
+     <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">Next</a></li>
+     <li class="page-item"><a class="page-link" href="?page={{ pages.paginator.num_pages }}">Last <i class="fa-solid fa-forward-fast"></i></a></li>
+     {% else %}
+     <li class="page-item"><a class="page-link disabled">Next </a></li>
+     {% endif %}
+    </ul>
+</nav>
+
+{% else %}
+<p class="text-success">No users found.</p>
+{% endif %}
+
+{% endblock content %}

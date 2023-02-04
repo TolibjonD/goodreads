@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} Goodreads | Books {% endblock title %}
+{% block additional_styles %}
+<style>
+    .card img{
+        height: 300px;
+    }
+    @media (max-width: 768px){
+        .card img{
+            height: 100%;
+        }
+    }
+</style>
+{% endblock additional_styles %}
+{% block content %}
+{% if pages %}
+<div class="row mb-2">
+    <div class="col-10 col-lg-6 mx-auto">
+        <form class="d-flex" role="search" method='get'>
+            <input class="form-control me-2" name='q' type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+    {% for book in pages.object_list %}
+    
+    <div class="card mb-3 mx-auto">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <img src="{{ book.photo.url }}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title"> {{ book.title }} </h5>
+              <p class="card-text"> {{ book.description|safe | slice:'300' }}... <a  href="{% url 'books:detail' book.id %}">Read more</a> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% endfor %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if pages.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1"><i class="fa-solid fa-backward-fast"></i> First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ pages.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link active" style="cursor: not-allowed;"> {{ pages.number }} </a></li>
+         {% if pages.has_next %}
+         <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">Next</a></li>
+         <li class="page-item"><a class="page-link" href="?page={{ pages.paginator.num_pages }}">Last <i class="fa-solid fa-forward-fast"></i></a></li>
+         {% else %}
+         <li class="page-item"><a class="page-link disabled">Next </a></li>
+         {% endif %}
+        </ul>
+      </nav>
+{% else %}
+<p>No books found. <i class="fa-solid fa-folder-open text-info"></i></p>
+{% endif %}
+
+{% endblock content %}

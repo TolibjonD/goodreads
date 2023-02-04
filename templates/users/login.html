@@ -1,3 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Goodreads | Login {% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
 <h1>Login Page </h1>
 <p>Please you can login our application.</p>
 <a href="{% url 'landing_page' %}">Back to landing page.</a>
+<br> <br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form |crispy }}
+    <button type="submit" class="btn btn-info mt-2">Log in</button>
+</form>
+
+{% endblock content %}

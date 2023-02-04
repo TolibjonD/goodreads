@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Goodreads | Book Detail {% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if book %}
+
+<div class="card mb-3 w-85 mx-auto">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src=" {{ book.photo.url }} " class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"> {{ book.title }} </h5>
+          <p class="card-text"> {{ book.description }} </p>
+          <p class="card-text"><small class="text-muted"> {{ book.isbn }} </small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if book.bookreview_set.all %}
+  <div class="container mt-5 border-left border-right container-comment">
+  {% for review in book.bookreview_set.all %}
+  <div class="mt-2 justify-content-center py-2">
+    <div class="second py-2 px-2"> <span class="text1"> {{ review.comment }} </span>
+        <div class="d-flex justify-content-between py-1 pt-2">
+            <div><img src="{{ review.user.photo.url }}" width="18"><span class="text2"> {{ review.user.username }} </span></div>
+            <div><span class="text3"> {{ review.created_at }} | </span><span class="thumbup"><i class="fa-solid fa-star thumbupo"></i></span><span class="text4"> {{ review.stars_given }} </span></div>
+        </div>
+    </div>
+  {% endfor %}
+
+</div>
+  {% endif %}
+
+    <!-- Button trigger modal -->
+    <button type="button" title="Leave comment" class="btn btn-primary comment__btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa-solid fa-comment"></i>
+    </button>
+
+    <!-- Modal -->
+    <form action="{% url 'books:reviews' book.id %}" method="post">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 font-weight-light" id="exampleModalLabel"><i class="fa-solid fa-bookmark text-info"></i> {{ book.title|slice:"20" }}... </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+          {{ form|crispy }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Leave comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% else %}
+<p>not found books</p>
+{% endif %}
+
+{% endblock content %}
