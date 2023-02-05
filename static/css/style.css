@@ -128,34 +128,43 @@ height: 100%;
 
 .alert-message{
   position: fixed;
-  to: 15%;
+  top: 15%;
   right: -300px;
   animation: alert 3s linear;
   z-index: 9999;
+  opacity: 0;
 }
 @keyframes alert{
   10%{
       right: -300px;
+      opacity: .85;
   }
   35%{
       right: 20px;
+      opacity: 1;
   }
   45%{
       right: 60px;
+      opacity: 1;
   }
   55%{
       right: 20px;
+      opacity: 1;
   }
   65%{
       right: 20px;
+      opacity: 1;
   }
   75%{
       right: 20px;
+      opacity: 1;
   }
   85%{
       right: 20px;
+      opacity: .85;
   }
   100%{
       right: -300px;
+      opacity: 0;
   }
 }
