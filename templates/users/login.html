@@ -12,7 +12,7 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form |crispy }}
-    <button type="submit" class="btn btn-info mt-2">Log in</button>
+    <button type="submit" class="btn btn-info mt-2">Log in</button> No account? get <a href="{% url 'users:register' %}">register</a>
 </form>
 
 {% endblock content %}
