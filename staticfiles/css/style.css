@@ -125,3 +125,37 @@ height: 650px;
 .carousel .carousel-item img{
 height: 100%;
 }
+
+.alert-message{
+  position: fixed;
+  to: 15%;
+  right: -300px;
+  animation: alert 3s linear;
+  z-index: 9999;
+}
+@keyframes alert{
+  10%{
+      right: -300px;
+  }
+  35%{
+      right: 20px;
+  }
+  45%{
+      right: 60px;
+  }
+  55%{
+      right: 20px;
+  }
+  65%{
+      right: 20px;
+  }
+  75%{
+      right: 20px;
+  }
+  85%{
+      right: 20px;
+  }
+  100%{
+      right: -300px;
+  }
+}
