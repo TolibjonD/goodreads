@@ -112,3 +112,16 @@ svg {
     right: 10px;
     bottom: 50px;
 }
+
+.carousel{
+height: 650px;
+background-color: #00a5f4;
+}
+
+.carousel .carousel-item{
+height: 650px;
+}
+
+.carousel .carousel-item img{
+height: 100%;
+}
