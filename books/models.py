@@ -30,8 +30,8 @@ class Author(models.Model):
 class BookAuthor(models.Model):
     author  =models.ForeignKey(Author, on_delete=models.CASCADE)
     book    =models.ForeignKey(Books, on_delete=models.CASCADE)
-
-
+    def full_name(self):
+        return f"{self.author.first_name} {self.author.last_name}"
 # ========= BookReview table goes here =======
 class BookReview(models.Model):
     user        =models.ForeignKey(CustomUser, on_delete=models.CASCADE)

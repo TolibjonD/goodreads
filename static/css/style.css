@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400&display=swap');
+
 .user__photo{
     width: 300px;
 }
@@ -166,5 +168,94 @@ height: 100%;
   100%{
       right: -300px;
       opacity: 0;
+  }
+}
+
+.review__img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.text-1{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.read_more_btn{
+  font-size: 22px;
+  vertical-align: middle;
+  animation: read_more 20s linear infinite;
+  border-radius: 50%;
+}
+
+.read_more_btn:hover{
+  box-shadow: 0 0 10px #43c3ff, 
+              0 0 20px #43c3ff,
+              0 0 30px #43c3ff,  
+              0 0 40px #43c3ff
+                                ;
+}
+
+@keyframes read_more{
+  0%{
+    transform: translate(1px, -2px);
+  }
+  5%{
+    transform: translate(1px, -2px);
+    color: #00a5f4;
+  }
+  10%{
+    transform: translate(1px, -2px);
+    color: #43c3ff;
+  }
+  15%{
+    transform: translate(-1px, 2px);
+    color: #4ec4ec;
+  }
+  20%{
+    transform: translate(1px, -2px);
+    color: #8cd8fc;
+  }
+  25%{
+    transform: translate(-2px, 1px);
+    color: #5ccafd;
+  }
+  30%{
+    transform: translate(2px, 1px);
+    color: #2ab4f5;
+  }
+  35%{
+    transform: translate(-1px, -2px);
+    color: #38c0ff;
+  }
+  40%{
+    transform: translate(-2px, -1px);
+    color: #38c0ff;
+  }
+  45%{
+    transform: translate(2px, 1px);
+    color: #38c0ff;
+  }
+  50%{
+    transform: translate(-1px, -2px);
+    color: #38c0ff;
+  }
+  55%{
+    transform: translate(1px, -2px);
+    color: #38c0ff;
+  }
+  60%{
+    transform: translate(-1px, -1px);
+    color: #38c0ff;
+  }
+  65%{
+    transform: translate(-1px, 1px);
+    color: #38c0ff;
+  }
+  70%{
+    transform: translate(1px, 1px);
+    color: #38c0ff;
   }
 }

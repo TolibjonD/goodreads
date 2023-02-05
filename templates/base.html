@@ -30,26 +30,29 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if request.user.is_superuser %}
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'books:list' %}">Books</a>
+                  <a class="nav-link {% if request.path == '/home/' %}active{% endif %} " aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'users:users' %}">Users</a>
+                  <a class="nav-link {% if request.path == '/books/' %}active{% endif %}" aria-current="page" href="{% url 'books:list' %}">Books</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == '/users/users/' %}active{% endif %}" aria-current="page" href="{% url 'users:users' %}">Users</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'books:list' %}">Books</a>
+                    <a class="nav-link {% if request.path == '/books/' %}active{% endif %}" aria-current="page" href="{% url 'books:list' %}">Books</a>
                 </li>
                 {% endif %}
 
             </ul>
             {% if request.user.is_authenticated %}
             <div class="btn-group">
-                <button type="button" class="btn btn-info text-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-info text-secondary dropdown-toggle {% if request.path == '/users/profile/' %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ request.user.username }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-start dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
-                  <li><a class="dropdown-item" href="{% url 'users:update' %}">Profile Update</a></li>
+                  <li><a class="dropdown-item {% if request.path == '/users/profile/' %}active{% endif %}" href="{% url 'users:profile' %}">Profile</a></li>
+                  <li><a class="dropdown-item {% if request.path == '/users/profile/update/' %}active{% endif %}" href="{% url 'users:update' %}">Profile Update</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a></li>
                 </ul>

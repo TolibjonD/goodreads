@@ -14,8 +14,17 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title"> {{ book.title }} </h5>
-          <p class="card-text"> {{ book.description }} </p>
-          <p class="card-text"><small class="text-muted"> {{ book.isbn }} </small></p>
+          <p class="text-1">
+            {% if book.bookauthor_set.all %}
+            Authored by
+            {% for author in book.bookauthor_set.all %}
+            <strong>{{ author.full_name }}</strong>
+            {% endfor %}
+            {% else %}
+            {% endif %}
+          </p>
+          <p class="card-text"> {{ book.description|safe }} </p>
+          <p class="card-text">ISBN: <small class="text-muted"> {{ book.isbn }} </small></p>
         </div>
       </div>
     </div>
@@ -25,7 +34,7 @@
   <div class="container mt-5 border-left border-right container-comment">
   {% for review in book.bookreview_set.all %}
   <div class="mt-2 justify-content-center py-2">
-    <div class="second py-2 px-2"> <span class="text1"> {{ review.comment }} </span>
+    <div class="second py-2 px-2"> <span class="text1"> {{ review.comment|safe }} </span>
         <div class="d-flex justify-content-between py-1 pt-2">
             <div><img src="{{ review.user.photo.url }}" width="18"><span class="text2"> {{ review.user.username }} </span></div>
             <div><span class="text3"> {{ review.created_at }} | </span><span class="thumbup"><i class="fa-solid fa-star thumbupo"></i></span><span class="text4"> {{ review.stars_given }} </span></div>

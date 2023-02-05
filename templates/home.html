@@ -1,13 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Admin Panel | Users {% endblock title %}
-{% block additional_styles %}
-    <style>
-    body {
-        background-color: #1c1c1b;
-    }
-    </style>
-    {% endblock %}
+{% block title %} Goodreads | home {% endblock title %}
 {% block content %}
 
 {% if pages %}
@@ -15,22 +8,22 @@
 <div class="row mb-2">
     <div class="col-10 col-lg-6 mx-auto">
         <form class="d-flex" role="search" method='get'>
-            <input class="form-control me-2" name='q' value="{{ search }}" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2 border-info text-info" name='q' value="{{ search }}" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info" type="submit">Search</button>
         </form>
     </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-{% for user in pages.object_list %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+{% for review in pages.object_list %}
     <div class="col">
-      <div class="card h-100 bg-transparent border-info">
-        <img src="{{ user.photo.url }}" class="card-img-top bg-white" alt="...">
-        <div class="card-body text-info border-info">
-          <h5 class="card-title"> {{ user.username }} </h5>
-          <p class="card-text"> {{ user.first_name }} </p>
-          <p class="card-text"> {{ user.last_name }} </p>
-          <p class="card-text"> {{ user.email }} </p>
+      <div class="card bg-transparent border-info p-2">
+        <img src="{{ review.user.photo.url }}" class="card-img-top review__img" alt="...">
+        <p class="card-title"> <strong>{{ review.user.username }}</strong> rated this book {{ review.stars_given }} <i class="fa-solid fa-star thumbupo"></i> </p>
+        <p class="text-1"> {{ review.created_at|date:"d M ,Y | H:i" }} </p>
+        <div class="card-body text-info border-info p-1 m-0">
+          <p class="card-text text-1"> {{ review.comment }} </p>
+          <img src="{{ review.book.photo.url }}" class="card-img-top" alt="...">
         </div>
       </div>
     </div>
@@ -54,7 +47,7 @@
 </nav>
 
 {% else %}
-<p class="text-info">No users found.</p>
+<p class="text-success">No users found.</p>
 {% endif %}
 
 {% endblock content %}
